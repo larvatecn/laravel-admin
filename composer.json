@@ -12,6 +12,7 @@
         "illuminate/support": "~8|~9"
     },
     "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.8",
         "phpunit/phpunit": "~9.0"
     },
     "autoload": {
@@ -36,5 +37,9 @@
                 "Admin": "Larva\\Admin\\Facades\\Admin"
             }
         }
+    },
+    "scripts": {
+        "check-style": "vendor/bin/php-cs-fixer fix --using-cache=no --diff --config=.php-cs-fixer.php --dry-run --ansi",
+        "fix-style": "vendor/bin/php-cs-fixer fix --using-cache=no --config=.php-cs-fixer.php --ansi"
     }
 }
