@@ -1,0 +1,15 @@
+<?php
+
+use App\Admin\Controllers\HomeController;
+use App\Admin\Controllers\SettingsController;
+use Illuminate\Routing\Router;
+
+Route::group([
+    'domain' => config('amis-admin.route.domain'),
+    'prefix' => config('amis-admin.route.prefix', 'admin'),
+    'middleware' => config('amis-admin.route.middleware'),
+], static function (Router $router) {
+    $router->get('home', [HomeController::class, 'index'])->name('admin.home');
+    $router->get('settings', [SettingsController::class, 'index'])->name('admin.settings');
+    $router->post('settings', [SettingsController::class, 'save'])->name('admin.setting.save');
+});
