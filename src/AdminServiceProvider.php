@@ -16,37 +16,37 @@ class AdminServiceProvider extends ServiceProvider
         Console\InstallCommand::class,
     ];
 
+    /**
+     * 路由中间件
+     *
+     * @var array|string[]
+     */
     protected array $routeMiddleware = [
-        'admin.auth' => Middleware\Authenticate::class,
-        'admin.bootstrap' => Middleware\Bootstrap::class,
-        'admin.session' => Middleware\Session::class,
-        'admin.permission' => Middleware\Permission::class,
+
     ];
 
+    /**
+     * 中间件组
+     *
+     * @var array|array[]
+     */
     protected array $middlewareGroups = [
         'admin' => [
-            'admin.auth',
-            'admin.bootstrap',
-            'admin.session',
-            'admin.permission',
+
         ],
     ];
 
+    /**
+     * 启动执行
+     */
     public function boot(): void
     {
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'admin');
-        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
-        $this->loadRoutesFrom(__DIR__ . '/routes.php');
-        if (file_exists($routes = admin_path('routes.php'))) {
-            $this->loadRoutesFrom($routes);
-        }
 
-        // Publishing is only necessary when using the CLI.
-        if ($this->app->runningInConsole()) {
-            $this->bootForConsole();
-        }
     }
 
+    /**
+     * 注册服务
+     */
     public function register(): void
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/admin.php', 'admin');
@@ -87,11 +87,12 @@ class AdminServiceProvider extends ServiceProvider
      */
     protected function registerRouteMiddleware(): void
     {
+        $router = $this->app->make('router');
         foreach ($this->routeMiddleware as $key => $middleware) {
-            app('router')->aliasMiddleware($key, $middleware);
+            $router->aliasMiddleware($key, $middleware);
         }
         foreach ($this->middlewareGroups as $key => $middleware) {
-            app('router')->middlewareGroup($key, $middleware);
+            $router->middlewareGroup($key, $middleware);
         }
     }
 }
