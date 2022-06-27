@@ -41,7 +41,6 @@ class AdminServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-
     }
 
     /**

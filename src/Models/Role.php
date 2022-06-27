@@ -7,10 +7,11 @@
 
 declare(strict_types=1);
 
-namespace Larva\Admin;
+namespace Larva\Admin\Models;
 
-use Closure;
+use Illuminate\Database\Eloquent\Model;
 
-class Admin
+class Role extends Model
 {
+
 }

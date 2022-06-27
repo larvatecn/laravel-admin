@@ -7,10 +7,12 @@
 
 declare(strict_types=1);
 
-namespace Larva\Admin;
+namespace Larva\Admin\Models;
 
-use Closure;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Admin
+class Menu extends Model
 {
+
 }
