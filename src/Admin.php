@@ -9,8 +9,21 @@ declare(strict_types=1);
 
 namespace Larva\Admin;
 
-use Closure;
+use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Contracts\Auth\StatefulGuard;
+use Illuminate\Support\Facades\Auth;
 
 class Admin
 {
+    public function user()
+    {
+        return $this->guard()->user();
+    }
+
+
+    public function guard(): Guard|StatefulGuard
+    {
+        $guard = config('admin.auth.guard') ?: 'admin';
+        return Auth::guard($guard);
+    }
 }

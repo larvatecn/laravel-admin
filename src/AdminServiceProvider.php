@@ -41,6 +41,16 @@ class AdminServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'admin');
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+        $this->loadRoutesFrom(__DIR__ . '/routes.php');
+        if (file_exists($routes = admin_path('routes.php'))) {
+            $this->loadRoutesFrom($routes);
+        }
+        // Publishing is only necessary when using the CLI.
+        if ($this->app->runningInConsole()) {
+            $this->bootForConsole();
+        }
     }
 
     /**
@@ -48,7 +58,14 @@ class AdminServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/admin.php', 'admin');
+        $this->mergeConfigFrom(__DIR__ . '/../config/admin.php', 'admin');//合并配置
+        $this->loadAdminAuthConfig();
+        $this->registerRouteMiddleware();
+
+        // Register the service the package provides.
+        $this->app->singleton('admin', function () {
+            return new Admin;
+        });
     }
 
     public function provides(): array
@@ -56,7 +73,9 @@ class AdminServiceProvider extends ServiceProvider
         return ['admin'];
     }
 
-
+    /**
+     * 控制台启动
+     */
     protected function bootForConsole(): void
     {
         // Publishing the configuration file.
