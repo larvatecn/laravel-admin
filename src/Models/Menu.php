@@ -30,6 +30,16 @@ class Menu extends Model
     protected $table = 'admin_menus';
 
     /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'params' => 'json',
+        'active_menus' => 'json',
+    ];
+
+    /**
      * A menu has and belongs to many roles.
      *
      * @return BelongsToMany
