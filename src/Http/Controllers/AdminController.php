@@ -49,7 +49,7 @@ class AdminController extends \Illuminate\Routing\Controller
      */
     protected mixed $resourceKey = null;
 
-    public function index(): JsonResponse
+    public function index()
     {
         return Admin::response($this->grid());
     }

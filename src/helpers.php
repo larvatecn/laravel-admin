@@ -17,9 +17,9 @@ if (!function_exists('admin_path')) {
      * @param string $path
      * @return string
      */
-    function admin_path($path = '')
+    function admin_path($path = ''): string
     {
-        return DIRECTORY_SEPARATOR . $path;
+        return ucfirst(config('admin.directory')) . ($path ? DIRECTORY_SEPARATOR . $path : $path);
     }
 }
 
