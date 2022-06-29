@@ -9,6 +9,7 @@ namespace Larva\Admin;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\ServiceProvider;
+use Larva\Admin\Components\HeaderToolbar;
 
 class AdminServiceProvider extends ServiceProvider
 {
@@ -77,6 +78,7 @@ class AdminServiceProvider extends ServiceProvider
         $this->app->singleton('admin', function () {
             return new Admin();
         });
+        $this->app->singleton('admin.headerToolbar', HeaderToolbar::class);
     }
 
     public function provides(): array

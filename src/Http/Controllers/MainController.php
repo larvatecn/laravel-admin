@@ -22,6 +22,6 @@ class MainController extends AdminController
             'footerLinks' => config('admin.footerLinks'),
         ];
 
-        return view('admin::main.index', ['config' => $config]);
+        return view('admin::main', ['config' => $config]);
     }
 }

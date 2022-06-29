@@ -1,0 +1,27 @@
+<?php
+/**
+ * This is NOT a freeware, use is subject to license terms.
+ *
+ * @copyright Copyright (c) 2010-2099 Jinan Larva Information Technology Co., Ltd.
+ */
+
+namespace Larva\Admin\Renderers;
+
+/**
+ * @method $this show($v)
+ * @method $this className($v)
+ * @method $this spinnerClassName($v)
+ * @method $this spinnerWrapClassName($v)
+ * @method $this mode($v)
+ * @method $this size($v)
+ * @method $this icon($v)
+ * @method $this tip($v)
+ * @method $this tipPlacement($v)
+ * @method $this delay($v)
+ * @method $this overlay($v)
+ * @method $this body($v)
+ */
+class Spinner extends BaseSchema
+{
+    public string $type = 'spinner';
+}
