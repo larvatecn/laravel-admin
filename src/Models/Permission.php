@@ -29,6 +29,22 @@ class Permission extends Model
      */
     protected $table = 'admin_permissions';
 
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'http_method' => 'array',
+        'http_path' => 'array',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
+
+    public static array $httpMethods = [
+        'GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS', 'HEAD',
+    ];
+
     public function roles(): BelongsToMany
     {
         $relatedModel = config('admin.database.roles_model');

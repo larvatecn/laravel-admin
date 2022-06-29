@@ -34,9 +34,7 @@ class InstallCommand extends Command
         $this->call('migrate');
         $userModel = config('admin.database.users_model');
         if ($userModel::count() == 0) {
-            if ($userModel::count() == 0) {
-                $this->call('db:seed', ['--class' => AdminTablesSeeder::class]);
-            }
+            $this->call('db:seed', ['--class' => AdminTablesSeeder::class]);
         }
     }
 
