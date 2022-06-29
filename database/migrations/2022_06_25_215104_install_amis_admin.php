@@ -12,8 +12,9 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create(config('admin.database.users_table'), function (Blueprint $table) {
+        Schema::create('admin_users', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->string('username', 190)->unique();
             $table->string('password', 60);
             $table->string('name');
@@ -22,14 +23,14 @@ return new class extends Migration {
             $table->timestamps();
         });
 
-        Schema::create(config('admin.database.roles_table'), function (Blueprint $table) {
+        Schema::create('admin_roles', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 50)->unique();
             $table->string('slug', 50)->unique();
             $table->timestamps();
         });
 
-        Schema::create(config('admin.database.permissions_table'), function (Blueprint $table) {
+        Schema::create('admin_permissions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 50)->unique();
             $table->string('slug', 50)->unique();
@@ -40,7 +41,7 @@ return new class extends Migration {
             $table->timestamps();
         });
 
-        Schema::create(config('admin.database.menu_table'), function (Blueprint $table) {
+        Schema::create('admin_menus', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('parent_id')->default(0);
             $table->integer('order')->default(0);
@@ -56,28 +57,28 @@ return new class extends Migration {
             $table->timestamps();
         });
 
-        Schema::create(config('admin.database.role_users_table'), function (Blueprint $table) {
+        Schema::create('admin_role_users', function (Blueprint $table) {
             $table->integer('role_id');
             $table->integer('user_id');
             $table->index(['role_id', 'user_id']);
             $table->timestamps();
         });
 
-        Schema::create(config('admin.database.role_permissions_table'), function (Blueprint $table) {
+        Schema::create('admin_role_permissions', function (Blueprint $table) {
             $table->integer('role_id');
             $table->integer('permission_id');
             $table->index(['role_id', 'permission_id']);
             $table->timestamps();
         });
 
-        Schema::create(config('admin.database.role_menu_table'), function (Blueprint $table) {
+        Schema::create('admin_role_menu', function (Blueprint $table) {
             $table->integer('role_id');
             $table->integer('menu_id');
             $table->index(['role_id', 'menu_id']);
             $table->timestamps();
         });
 
-        Schema::create(config('admin.database.permission_menu_table'), function (Blueprint $table) {
+        Schema::create('admin_permission_menu', function (Blueprint $table) {
             $table->integer('permission_id');
             $table->integer('menu_id');
             $table->index(['permission_id', 'menu_id']);
