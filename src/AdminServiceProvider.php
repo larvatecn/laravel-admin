@@ -12,6 +12,11 @@ use Illuminate\Support\ServiceProvider;
 
 class AdminServiceProvider extends ServiceProvider
 {
+    /**
+     * 控制台命令
+     *
+     * @var array|string[]
+     */
     protected array $commands = [
         Console\InstallCommand::class,
     ];
@@ -22,7 +27,10 @@ class AdminServiceProvider extends ServiceProvider
      * @var array|string[]
      */
     protected array $routeMiddleware = [
-
+        'admin.auth' => Http\Middleware\Authenticate::class,
+        'admin.bootstrap' => Http\Middleware\Bootstrap::class,
+        'admin.session' => Http\Middleware\Session::class,
+        'admin.permission' => Http\Middleware\Permission::class,
     ];
 
     /**
@@ -32,7 +40,10 @@ class AdminServiceProvider extends ServiceProvider
      */
     protected array $middlewareGroups = [
         'admin' => [
-
+            'admin.auth',
+            'admin.bootstrap',
+            'admin.session',
+            'admin.permission',
         ],
     ];
 

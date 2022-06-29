@@ -15,6 +15,11 @@ use Illuminate\Support\Facades\Auth;
 
 class Admin
 {
+    public function bootstrap()
+    {
+        require config('admin.bootstrap', admin_path('bootstrap.php'));
+    }
+
     public function user()
     {
         return $this->guard()->user();
