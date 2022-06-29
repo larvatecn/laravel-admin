@@ -64,7 +64,7 @@ class AdminServiceProvider extends ServiceProvider
 
         // Register the service the package provides.
         $this->app->singleton('admin', function () {
-            return new Admin;
+            return new Admin();
         });
     }
 
@@ -81,12 +81,12 @@ class AdminServiceProvider extends ServiceProvider
         // Publishing the configuration file.
         $this->publishes([
             __DIR__ . '/../config/admin.php' => config_path('admin.php'),
-        ], 'admin.config');
+        ], 'admin-config');
 
         // Publishing assets.
         $this->publishes([
             __DIR__ . '/../resources/dist' => public_path('vendor/admin'),
-        ], 'admin.assets');
+        ], 'admin-assets');
 
         // Registering package commands.
         $this->commands($this->commands);

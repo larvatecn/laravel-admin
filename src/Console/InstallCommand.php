@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace Larva\Admin\Console;
 
 use Illuminate\Console\Command;
+use Larva\Admin\Models\AdminTablesSeeder;
 
 class InstallCommand extends Command
 {

@@ -16,4 +16,6 @@ use Illuminate\Database\Eloquent\Model;
 class AdminUser extends Model implements AuthenticatableContract
 {
     use Authenticatable, HasPermissions;
+
+    protected $table = 'admin_users';
 }

@@ -14,5 +14,5 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Menu extends Model
 {
-
+    protected $table = 'admin_menu';
 }
