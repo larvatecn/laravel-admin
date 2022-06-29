@@ -71,14 +71,14 @@ return new class extends Migration {
             $table->timestamps();
         });
 
-        Schema::create('admin_role_menu', function (Blueprint $table) {
+        Schema::create('admin_role_menus', function (Blueprint $table) {
             $table->integer('role_id');
             $table->integer('menu_id');
             $table->index(['role_id', 'menu_id']);
             $table->timestamps();
         });
 
-        Schema::create('admin_permission_menu', function (Blueprint $table) {
+        Schema::create('admin_permission_menus', function (Blueprint $table) {
             $table->integer('permission_id');
             $table->integer('menu_id');
             $table->index(['permission_id', 'menu_id']);
