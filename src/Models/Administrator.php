@@ -9,34 +9,36 @@ declare(strict_types=1);
 
 namespace Larva\Admin\Models;
 
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Larva\Admin\Traits\HasDateTimeFormatter;
 
 /**
- * 菜单模型
+ * 管理员模型
  *
  * @author Tongle Xu <xutongle@msn.com>
  */
-class Menu extends Model
+class Administrator extends Model implements AuthenticatableContract
 {
-    use HasDateTimeFormatter;
+    use Authenticatable, HasPermissions, HasDateTimeFormatter;
 
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'admin_menus';
+    protected $table = 'admin_users';
 
     /**
-     * A menu has and belongs to many roles.
+     * A user has and belongs to many roles.
      *
      * @return BelongsToMany
      */
     public function roles(): BelongsToMany
     {
         $relatedModel = config('admin.database.roles_model');
-        return $this->belongsToMany($relatedModel, 'admin_role_menus', 'menu_id', 'role_id');
+        return $this->belongsToMany($relatedModel, 'admin_role_users', 'user_id', 'role_id');
     }
 }

@@ -1,10 +1,15 @@
 <?php
+/**
+ * This is NOT a freeware, use is subject to license terms.
+ *
+ * @copyright Copyright (c) 2010-2099 Jinan Larva Information Technology Co., Ltd.
+ */
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class() extends Migration {
     /**
      * Run the migrations.
      *
@@ -93,13 +98,13 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists(config('admin.database.users_table'));
-        Schema::dropIfExists(config('admin.database.roles_table'));
-        Schema::dropIfExists(config('admin.database.permissions_table'));
-        Schema::dropIfExists(config('admin.database.menu_table'));
-        Schema::dropIfExists(config('admin.database.role_users_table'));
-        Schema::dropIfExists(config('admin.database.role_permissions_table'));
-        Schema::dropIfExists(config('admin.database.role_menu_table'));
-        Schema::dropIfExists(config('admin.database.permission_menu_table'));
+        Schema::dropIfExists('admin_users');
+        Schema::dropIfExists('admin_roles');
+        Schema::dropIfExists('admin_permissions');
+        Schema::dropIfExists('admin_menus');
+        Schema::dropIfExists('admin_role_users');
+        Schema::dropIfExists('admin_role_permissions');
+        Schema::dropIfExists('admin_role_menus');
+        Schema::dropIfExists('admin_permission_menus');
     }
 };

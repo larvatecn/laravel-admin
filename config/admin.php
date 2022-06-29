@@ -5,7 +5,7 @@
  * @copyright Copyright (c) 2022-2099 Jinan Larva Information Technology Co., Ltd.
  */
 
-use Larva\Admin\Models\AdminUser;
+use Larva\Admin\Models\Administrator;
 use Larva\Admin\Models\Menu;
 use Larva\Admin\Models\Permission;
 use Larva\Admin\Models\Role;
@@ -26,7 +26,7 @@ return [
     'https' => env('ADMIN_HTTPS', false),
 
     'database' => [
-        'users_model' => AdminUser::class,
+        'users_model' => Administrator::class,
         'roles_model' => Role::class,
         'permissions_model' => Permission::class,
         'menu_model' => Menu::class,
