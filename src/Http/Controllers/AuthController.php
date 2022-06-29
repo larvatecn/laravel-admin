@@ -10,6 +10,9 @@ declare(strict_types=1);
 namespace Larva\Admin\Http\Controllers;
 
 use Exception;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -29,8 +32,10 @@ use Larva\Admin\Renderers\Page;
  *
  * @author Tongle Xu <xutongle@msn.com>
  */
-class AuthController extends AdminController
+class AuthController extends \Illuminate\Routing\Controller
 {
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
     public function index(): JsonResponse
     {
         $login = AmisForm::make()
@@ -129,7 +134,7 @@ class AuthController extends AdminController
         $form = AmisForm::make()
             ->data(Admin::user())
             //->resetAfterSubmit(true)
-            ->api(route('amis-admin.userSetting'));
+            ->api(route('admin.userSetting'));
         $form->body([
             InputImage::make()->name('avatar')->label('头像'),
             InputText::make()->name('username')->label('用户名')->readOnly(true)->disabled(true),
