@@ -1,11 +1,13 @@
 <?php
 
+use Larva\Admin\Facades\Admin;
+
 $amisVersion = '1.10.2';
-AmisAdmin::css([
-    'https://cdn.jsdelivr.net/npm/amis@'.$amisVersion.'/sdk/sdk.css',
-    'https://cdn.jsdelivr.net/npm/amis@'.$amisVersion.'/sdk/helper.css',
-    'https://cdn.jsdelivr.net/npm/amis@'.$amisVersion.'/sdk/iconfont.css',
+Admin::css([
+    'https://cdn.jsdelivr.net/npm/amis@' . $amisVersion . '/sdk/sdk.css',
+    'https://cdn.jsdelivr.net/npm/amis@' . $amisVersion . '/sdk/helper.css',
+    'https://cdn.jsdelivr.net/npm/amis@' . $amisVersion . '/sdk/iconfont.css',
 ]);
-AmisAdmin::baseJs([
-    'https://cdn.jsdelivr.net/npm/amis@'.$amisVersion.'/sdk/sdk.js',
+Admin::baseJs([
+    'https://cdn.jsdelivr.net/npm/amis@' . $amisVersion . '/sdk/sdk.js',
 ]);
