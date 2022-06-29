@@ -2,14 +2,13 @@
 /**
  * This is NOT a freeware, use is subject to license terms.
  *
- * @copyright Copyright (c) 2022-2099 Jinan Larva Information Technology Co., Ltd.
+ * @copyright Copyright (c) 2010-2099 Jinan Larva Information Technology Co., Ltd.
  */
 
 namespace Larva\Admin\Http\Controllers;
 
 class MainController extends AdminController
 {
-
     public function index()
     {
         $config = [

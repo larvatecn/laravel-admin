@@ -2,10 +2,10 @@
 
 namespace DummyNamespace;
 
-use AmisAdmin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Larva\Admin\Facades\Admin;
 use Larva\Admin\Renderers\Button;
 use Larva\Admin\Renderers\Form\AmisForm;
 use Larva\Admin\Renderers\Form\InputKV;

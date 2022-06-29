@@ -1,9 +1,11 @@
 <?php
+/**
+ * This is NOT a freeware, use is subject to license terms.
+ *
+ * @copyright Copyright (c) 2010-2099 Jinan Larva Information Technology Co., Ltd.
+ */
 
 declare(strict_types=1);
-/**
- * This is NOT a freeware, use is subject to license terms
- */
 
 namespace Larva\Admin\Http\Middleware;
 
@@ -38,9 +40,9 @@ class Permission
             return $permission->shouldPassThrough($request);
         })) {
             if ($request->isMethod('get')) {
-                return Admin::response(Alert::make()->body("您没有权限访问该页面")->level("danger")->showIcon(true)->showCloseButton(false));
+                return Admin::response(Alert::make()->body('您没有权限访问该页面')->level('danger')->showIcon(true)->showCloseButton(false));
             }
-            return Admin::responseError("没有权限");
+            return Admin::responseError('没有权限');
         }
 
         return $next($request);

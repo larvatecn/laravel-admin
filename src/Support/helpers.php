@@ -18,11 +18,11 @@ if (!function_exists('admin_path')) {
     }
 }
 
-if (! function_exists('admin_base_path')) {
+if (!function_exists('admin_base_path')) {
     /**
      * Get admin url.
      *
-     * @param  string  $path
+     * @param string $path
      * @return string
      */
     function admin_base_path($path = '')
@@ -37,5 +37,26 @@ if (! function_exists('admin_base_path')) {
             return $prefix ?: '/';
         }
         return $prefix.'/'.$path;
+    }
+}
+
+if (!function_exists('admin_url')) {
+    /**
+     * Get admin url.
+     *
+     * @param string $path
+     * @param mixed $parameters
+     * @param bool $secure
+     * @return string
+     */
+    function admin_url($path = '', $parameters = [], $secure = null)
+    {
+        if (url()->isValidUrl($path)) {
+            return $path;
+        }
+
+        $secure = $secure ?: (config('admin.https') || config('admin.secure'));
+
+        return url(admin_base_path($path), $parameters, $secure);
     }
 }

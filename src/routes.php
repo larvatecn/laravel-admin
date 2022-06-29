@@ -7,7 +7,7 @@
 
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
-use Larva\Admin\Http\Controllers\AdminUserController;
+use Larva\Admin\Http\Controllers\AdministratorController;
 use Larva\Admin\Http\Controllers\AuthController;
 use Larva\Admin\Http\Controllers\HandleController;
 use Larva\Admin\Http\Controllers\MainController;
@@ -20,10 +20,10 @@ Route::group([
     'prefix' => config('admin.route.prefix', 'admin'),
     'middleware' => config('admin.route.middleware'),
 ], static function (Router $router) {
-    $router->get('/', [MainController::class, "index"]);
-    $router->get('view', [MainController::class, "index"]);
-    $router->get('view/{name}', [MainController::class, "index"])->where('name', '.*');
-    $router->get('getMenu', [HandleController::class, "menu"])->name('admin.getMenu');
+    $router->get('/', [MainController::class, 'index']);
+    $router->get('view', [MainController::class, 'index']);
+    $router->get('view/{name}', [MainController::class, 'index'])->where('name', '.*');
+    $router->get('getMenu', [HandleController::class, 'menu'])->name('admin.getMenu');
     $router->get('getHeaderToolbar', [HandleController::class, 'headerToolbar'])->name('admin.headerToolbar');
     $router->any('_handle_action_', [HandleController::class, 'action'])->name('admin.handle-action');
     $router->post('_handle_upload_image_', [HandleController::class, 'uploadImage'])->name('admin.handle-upload-image');
@@ -35,7 +35,7 @@ Route::group([
     $router->get('logout', [$authController, 'logout'])->name('admin.logout');
     $router->any('user_setting', [$authController, 'userSetting'])->name('admin.userSetting');
 
-    $router->resource('admin_users', AdminUserController::class)->names('admin.user');
+    $router->resource('admin_users', AdministratorController::class)->names('admin.user');
     $router->resource('menus', MenuController::class)->names('admin.menu');
     $router->resource('roles', RoleController::class)->names('admin.role');
     $router->resource('permissions', PermissionController::class)->names('admin.permission');

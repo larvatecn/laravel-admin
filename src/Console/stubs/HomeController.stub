@@ -2,8 +2,8 @@
 
 namespace DummyNamespace;
 
-use AmisAdmin;
 use App\Http\Controllers\Controller;
+use Larva\Admin\Facades\Admin;
 use Larva\Admin\Renderers\Card;
 use Larva\Admin\Renderers\Divider;
 use Larva\Admin\Renderers\Flex;
