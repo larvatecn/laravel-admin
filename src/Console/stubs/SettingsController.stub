@@ -1,67 +1,34 @@
 <?php
 
 namespace DummyNamespace;
-
-use App\Http\Controllers\Controller;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
+use Larva\Admin\Components\Grid;
 use Larva\Admin\Facades\Admin;
-use Larva\Admin\Renderers\Button;
-use Larva\Admin\Renderers\Form\AmisForm;
-use Larva\Admin\Renderers\Form\InputKV;
-use Larva\Admin\Renderers\Form\InputText;
-use Larva\Admin\Renderers\Page;
-use Larva\Admin\Renderers\Tab;
-use Larva\Admin\Renderers\Tabs;
+use Larva\Admin\Http\Controllers\AdminController;
+use Larva\Admin\Renderers\Action\AjaxAction;
+use Larva\Admin\Renderers\Date;
+use Larva\Settings\SettingEloquent;
 
-class SettingsController extends Controller
+class SettingsController extends AdminController
 {
-    public function index(): JsonResponse
+    protected function grid(): Grid
     {
-        $page = Page::make()->title("配置中心")->toolbar([
-            Button::make()->label("保存")->level("primary")->type("submit")->target("setting-form"),
-        ]);
-        $form = AmisForm::make()
-            ->data(settings()->all())
-            ->name("setting-form")->wrapWithPanel(false)
-            ->api(route('admin.setting.save'));
-        $form->body([
-            Tabs::make()
-                ->tabsMode("chrome")
-                ->tabs([
-                    Tab::make()
-                        ->title("基本设置")
-                        ->body([
-                            InputText::make()->label("网站名称")->name("site_name"),
-                            InputText::make()->label("网站URL")->name("site_url"),
-                            InputKV::make()->label("附加配置")->name("addition_config"),
-                        ]),
-                ]),
-        ]);
-        $page->body($form);
-        return AmisAdmin::response($page);
+        return Grid::make(SettingEloquent::query(), 'admin.user', function (Grid $grid) {
+            $grid->useCRUD()->columnsTogglable(false);
+            $grid->dialogForm();
+            $grid->column('id', 'ID')->width(40);
+            $grid->column('name', '配置名称');
+            $grid->column('key', 'Key')->width(100);
+            $grid->column('value', 'Value')->width(100);
+            $grid->column('desc', '描述');
+            $grid->column('cast_type', '类型');
+            $grid->column('created_at', '创建时间')->sortable(true)->useTableColumn(Date::make()->datetime());
+            $grid->actions(function (Grid\Actions $actions) {
+                $actions->rowAction();
+                $actions->callDeleteAction(function (AjaxAction $action) {
+                    $id = Admin::user()?->getKey();
+                    $action->hiddenOn("id==$id"); //这里使用了显隐判断
+                });
+            });
+        });
     }
-
-    public function save(Request $request): JsonResponse
-    {
-        try {
-            AmisAdmin::validatorData($request->all(), [
-                'site_name' => ['required'],
-                'site_url' => ['required'],
-                'more_config' => ['array'],
-            ]);
-            $count = 0;
-            foreach ($request->all() as $key => $value) {
-                if (settings($key) === $value) continue;
-                settings()->set($key, $value);
-                $count++;
-            }
-            return AmisAdmin::responseMessage("本次更新了 $count 个设置项");
-        } catch (\Exception $e) {
-            return AmisAdmin::responseError($e->getMessage());
-        }
-
-    }
-
-
 }
