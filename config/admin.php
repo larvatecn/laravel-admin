@@ -40,6 +40,47 @@ return [
 
     'https' => env('ADMIN_HTTPS', false),
 
+    'auth' => [
+        'controller' => App\Admin\Controllers\AuthController::class,
+        'guard' => 'admin',
+        'guards' => [
+            'admin' => [
+                'driver' => 'session',
+                'provider' => 'admin',
+            ],
+        ],
+        'providers' => [
+            'admin' => [
+                'driver' => 'eloquent',
+                'model' => Administrator::class,
+            ],
+        ],
+        'remember' => true,
+        //未登录跳转路由
+        'redirect_to' => 'view/login',
+        //登录成功跳转路由
+        'login_redirect' => 'home  ',
+        //无需登录的路由
+        'excepts' => [
+            'login',
+            'view/login',
+        ],
+    ],
+    'permission' => [
+        'enable' => true,
+        'excepts' => [
+            'getHeaderToolbar',
+            'getMenu',
+            'user_setting',
+            'login',
+            'logout',
+            '_handle_action_',
+            '_handle_upload_image_',
+            '_handle_upload_file_',
+            'view*',
+        ],
+    ],
+
     'database' => [
         'users_model' => Administrator::class,
         'roles_model' => Role::class,

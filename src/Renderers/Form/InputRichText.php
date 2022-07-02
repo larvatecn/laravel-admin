@@ -21,7 +21,7 @@ class InputRichText extends FormBase
 
     public function __construct()
     {
-        $this->receiver(route('amis-admin.handle-upload-image', ['unique_name' => true]));
+        $this->receiver(route('admin.handle-upload-image', ['unique_name' => true]));
     }
 
     public function defaultAttr()

@@ -7,6 +7,8 @@
 
 namespace Larva\Admin\Renderers\Form;
 
+use Larva\Admin\Renderers\BaseSchema;
+
 /**
  * @method $this buttons($v)
  */

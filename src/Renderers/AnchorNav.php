@@ -9,7 +9,7 @@ namespace Larva\Admin\Renderers;
 
 /**
  * AnchorNav 锚点导航渲染器
- * Alert 提示渲染器。
+ *
  * @method self links($v)
  * @method self active($v)
  * @method self className($v)

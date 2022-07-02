@@ -31,7 +31,7 @@ class AdministratorController extends AdminController
         $model = config('admin.database.users_model');
         return Grid::make($model::query(), 'admin.user', function (Grid $grid) {
             $grid->useCRUD()->columnsTogglable(false);
-            $grid->dialogForm();
+            $grid->disableBulkDelete()->dialogForm();
             $grid->column('id', 'ID')->width(40);
             $grid->column('avatar', '头像')
                 ->width(60)
@@ -63,10 +63,8 @@ class AdministratorController extends AdminController
                     ->justify('flex-start')
                     ->alignItems('start')
                     ->items([
-                        $form->item('avatar', ' ')
-                            ->useFormItem(InputImage::make()->placeholder('xxx')),
-                        Group::make()
-                            ->className('flex-1')
+                        $form->item('avatar', ' ')->useFormItem(InputImage::make()->placeholder('xxx')),
+                        Group::make()->className('flex-1')
                             ->body([
                                 $form->item('username', '用户名')
                                     ->required()
@@ -104,11 +102,9 @@ class AdministratorController extends AdminController
                 $form->deleteEditData('password');
             });
             $form->saving(function (Form $form) {
+                $form->deleteInput('password_confirmation');
                 if ($form->password && $form->model()->get('password') != $form->password) {
                     $form->password = bcrypt($form->password);
-                }
-                if (!$form->password) {
-                    $form->deleteInput('password');
                 }
             });
         });

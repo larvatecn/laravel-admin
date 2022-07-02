@@ -34,17 +34,26 @@ class Form implements JsonSerializable
 
     protected bool $isDialog = false;
 
+    /**
+     * Create a new form instance.
+     */
     public function __construct()
     {
         $this->page = Page::make()->title('编辑');
         $this->form = AmisForm::make();
-
         $this->toolbar = new Toolbar($this);
         $this->actions = new Actions($this);
-
         $this->isDialog = (int)request('_dialog', 0) === 1;
     }
 
+    /**
+     * Create a new form instance.
+     *
+     * @param $builder
+     * @param string $routeName
+     * @param $fun
+     * @return Form
+     */
     public static function make($builder, string $routeName, $fun): Form
     {
         $form = new static();
@@ -61,7 +70,7 @@ class Form implements JsonSerializable
     }
 
     /**
-     * 获取AmisPage实例
+     * 获取 Amis Page 实例
      * @return Page
      */
     public function usePage(): Page

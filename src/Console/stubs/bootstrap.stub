@@ -2,7 +2,7 @@
 
 use Larva\Admin\Facades\Admin;
 
-$amisVersion = '1.10.2';
+$amisVersion = '2.0.0';
 Admin::css([
     'https://cdn.jsdelivr.net/npm/amis@' . $amisVersion . '/sdk/sdk.css',
     'https://cdn.jsdelivr.net/npm/amis@' . $amisVersion . '/sdk/helper.css',

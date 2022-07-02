@@ -54,7 +54,6 @@ trait GridCRUD
         return $this->columns;
     }
 
-
     /**
      * 是否一次性加载
      * @return bool
@@ -74,7 +73,6 @@ trait GridCRUD
         $this->loadDataOnce = $loadDataOnce;
         return $this;
     }
-
 
     protected function renderCRUD(): CRUD
     {

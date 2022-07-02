@@ -33,7 +33,7 @@ trait FormResource
     protected array $addRules = [];
     protected array $addRulesMessages = [];
 
-    protected \Illuminate\Validation\Validator $validator;
+    protected $validator;
 
     public function __get($name)
     {
@@ -87,6 +87,7 @@ trait FormResource
                 }
             }
         }
+
         //合并自定义规则
         $rules = Arr::collapse([$rules, $this->addRules]);
         $messages = Arr::collapse([$messages, $this->addRulesMessages]);
@@ -97,17 +98,25 @@ trait FormResource
                 return in_array($key, collect($data)->keys()->toArray());
             })->toArray();
         }
+
         $this->callUseRules($rules);
 
         $this->validator = Validator::make($data, $rules, $messages);
 
         $this->callValidating($this->validator);
+
         if ($this->validator->fails()) {
             abort(400, $this->validator->errors()->first());
         }
     }
 
-
+    /**
+     * 获取输入数据
+     *
+     * @param $key
+     * @param $value
+     * @return array|\ArrayAccess|mixed
+     */
     private function input($key, $value = null)
     {
         if (is_null($value)) {
@@ -123,7 +132,6 @@ trait FormResource
      */
     protected function prepare(array $data = []): void
     {
-
         //处理要过滤的字段
         $this->inputs = array_merge($this->removeIgnoredFields($data), $this->inputs);
         //保存前钩子
@@ -459,7 +467,6 @@ trait FormResource
             $this->model = $this->builder->findOrFail($id);
 
             $this->_update($data);
-
             return Admin::responseMessage('更新成功');
         } catch (Exception $exception) {
             return Admin::responseError($exception->getMessage());
@@ -521,6 +528,8 @@ trait FormResource
 
         //验证数据
         $this->validatorData($data);
+        print_r($this->model);
+        exit;
         //预处理数据
         $this->prepare($data);
 

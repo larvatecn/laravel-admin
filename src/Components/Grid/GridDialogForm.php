@@ -16,7 +16,6 @@ trait GridDialogForm
 
     protected DialogForm $dialogForm;
 
-
     /**
      * 弹窗表单模式
      * @param string|null $size xs、sm、md、lg、xl、full

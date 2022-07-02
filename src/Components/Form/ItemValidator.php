@@ -70,6 +70,8 @@ trait ItemValidator
     }
 
     /**
+     * 获取验证规则
+     *
      * @return array
      */
     public function getRules(): array

@@ -60,7 +60,7 @@ trait FormMain
     }
 
     /**
-     * 获取AmisForm对象
+     * 获取 Amis Form 对象
      * @return AmisForm
      */
     public function useForm(): AmisForm
@@ -73,7 +73,7 @@ trait FormMain
      * 获取表单提交地址
      * @return string
      */
-    private function getAction()
+    private function getAction(): string
     {
         if ($this->isEdit) {
             return $this->getUpdateUrl($this->editKey);
@@ -81,10 +81,13 @@ trait FormMain
         return $this->getStoreUrl();
     }
 
-
+    /**
+     * 渲染表单
+     *
+     * @return AmisForm
+     */
     public function renderForm(): AmisForm
     {
-
         //表单项配置
         if ($this->customLayout) {
             $items = $this->customLayout;

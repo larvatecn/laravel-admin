@@ -8,7 +8,8 @@
 namespace Larva\Admin\Renderers\Form;
 
 /**
- * Select渲染器
+ * Select 选择器
+ *
  * @method $this autoComplete($v)
  * @method $this menuTpl($v)
  * @method $this borderMode($v)

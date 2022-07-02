@@ -11,6 +11,7 @@ use Larva\Admin\Renderers\BaseSchema;
 
 /**
  * 表格列，不指定类型时默认为文本类型。
+ *
  * @method $this label($v)
  * @method $this fixed($v)
  * @method $this name($v)

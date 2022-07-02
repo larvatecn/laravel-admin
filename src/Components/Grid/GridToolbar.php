@@ -13,7 +13,6 @@ trait GridToolbar
 {
     protected Toolbar $toolbar;
 
-
     /**
      * 禁用新增操作
      * @return $this

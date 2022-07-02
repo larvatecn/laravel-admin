@@ -7,6 +7,8 @@
 
 namespace Larva\Admin\Renderers\Action;
 
+use Larva\Admin\Renderers\Button;
+
 /**
  * @method $this copy($v)
  */

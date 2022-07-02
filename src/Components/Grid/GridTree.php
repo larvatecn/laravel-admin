@@ -7,13 +7,14 @@
 
 namespace Larva\Admin\Components\Grid;
 
+use Larva\Admin\Components\Grid;
+
 trait GridTree
 {
     private bool $toTree = false;
     private ?string $toTreeKey = null;
     private string $toTreeParentKey = 'parent_id';
     private string $toTreeChildrenName = 'parent_id';
-
 
     /**
      * @return bool
@@ -33,7 +34,6 @@ trait GridTree
         }
         return $this->builder()->getModel()->getKeyName();
     }
-
 
     /**
      * @return string

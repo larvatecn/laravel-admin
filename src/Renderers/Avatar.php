@@ -8,6 +8,8 @@
 namespace Larva\Admin\Renderers;
 
 /**
+ * 头像渲染器
+ *
  * @method $this className($v)
  * @method $this style($v)
  * @method $this badge($v)

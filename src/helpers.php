@@ -22,7 +22,10 @@ if (!function_exists('admin_path')) {
         return ucfirst(config('admin.directory')) . ($path ? DIRECTORY_SEPARATOR . $path : $path);
     }
 }
-
+function admin_file_url()
+{
+    return '';
+}
 if (!function_exists('admin_base_path')) {
     /**
      * Get admin url.

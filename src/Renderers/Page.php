@@ -8,6 +8,8 @@
 namespace Larva\Admin\Renderers;
 
 /**
+ * AMIS Page 实例
+ *
  * @method $this title($v) 页面标题
  * @method $this subTitle($v) 页面副标题
  * @method $this remark($v) 页面描述, 标题旁边会出现个小图标，放上去会显示这个属性配置的内容。

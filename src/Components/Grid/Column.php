@@ -12,6 +12,8 @@ use Larva\Admin\Renderers\BaseSchema;
 use Larva\Admin\Renderers\Table\TableColumn;
 
 /**
+ * 列
+ *
  * @method $this type($v)
  * @method $this fixed($v) 配置是否固定当前列 'left' | 'right' | 'none'
  * @method $this popOver($v) 配置查看详情功能

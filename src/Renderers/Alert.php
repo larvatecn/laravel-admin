@@ -9,6 +9,7 @@ namespace Larva\Admin\Renderers;
 
 /**
  * Alert 提示渲染器。
+ *
  * @method self title($v)
  * @method self body($v)
  * @method self level($v)

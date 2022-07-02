@@ -33,7 +33,6 @@ class Toolbar
         $this->grid = $grid;
     }
 
-
     /**
      * 构造新增按钮操作
      * @return Button
@@ -59,7 +58,6 @@ class Toolbar
         $this->disableCreate = $bool;
     }
 
-
     /**
      * Toolbar 系统默认
      * @return array
@@ -67,7 +65,6 @@ class Toolbar
     private function initToolbar(): array
     {
         $res = [];
-
         if (!$this->disableCreate) {
             $res[] = $this->buildCreateButton();
         }
@@ -197,7 +194,6 @@ class Toolbar
         return $res->toArray();
     }
 
-
     /**
      * 禁用批量删除
      * @param bool $bool
@@ -207,7 +203,6 @@ class Toolbar
     {
         $this->disableBulkDelete = $bool;
     }
-
 
     /**
      * 批量操作系统默认
@@ -223,7 +218,6 @@ class Toolbar
         }
         return $res->toArray();
     }
-
 
     /**
      * 添加批量操作

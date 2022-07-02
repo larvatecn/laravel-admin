@@ -9,6 +9,7 @@ namespace Larva\Admin\Renderers\Form;
 
 /**
  * 文本输入框
+ *
  * @method $this addOn($v)
  * @method $this trimContents($v)
  * @method $this autoComplete($v)
@@ -23,6 +24,11 @@ class InputText extends FormOptions
 {
     public string $type = 'input-text';
 
+    /**
+     * 邮件输入框
+     *
+     * @return $this
+     */
     public function email(): InputText
     {
         $this->type = 'input-email';

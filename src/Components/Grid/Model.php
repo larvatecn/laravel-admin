@@ -28,7 +28,6 @@ class Model
         $this->model = $builder->getModel();
     }
 
-
     /**
      * 获取关联模型
      * @return array
@@ -118,7 +117,7 @@ class Model
      * 自动预加载
      * @return void
      */
-    protected function autoWith()
+    protected function autoWith(): void
     {
         $setWith = collect($this->builder->getEagerLoads())->keys()->toArray();
         //排除自定义的with
@@ -140,10 +139,9 @@ class Model
      * @param $data
      * @return void
      */
-    protected function prepareData(&$data)
+    protected function prepareData(&$data): void
     {
         $columns = $this->grid->getColumns();
-
         /*@var Column $column */
         foreach ($columns as $column) {
             $component = $column->render();
@@ -163,9 +161,7 @@ class Model
     {
         $this->setOrder();
         $this->setWhere();
-
         $this->autoWith();
-
 
         if ($this->grid->isLoadDataOnce()) {
             $pageData = $this->builder->get();
@@ -184,7 +180,7 @@ class Model
         ];
     }
 
-    private function callData($data)
+    private function callData($data): void
     {
         $callRows = $this->grid->callRows;
         $callRow = $this->grid->callRow;
@@ -203,7 +199,6 @@ class Model
         if ($this->grid->isToTree()) {
             return arr2tree($data, $this->grid->getToTreeKey(), $this->grid->getToTreeParentKey(), $this->grid->getToTreeChildrenName());
         }
-
         return $data;
     }
 
@@ -214,7 +209,6 @@ class Model
     {
         return $this->builder;
     }
-
 
     /**
      * @return EloquentModel
