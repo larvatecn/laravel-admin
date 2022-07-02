@@ -8,6 +8,8 @@
 namespace Larva\Admin\Renderers\Form;
 
 /**
+ * 文件上传
+ *
  * @method $this btnLabel($v)
  * @method $this accept($v)
  * @method $this asBase64($v)
@@ -46,7 +48,7 @@ class InputFile extends FormBase
 
     public function __construct()
     {
-        $this->receiver(route('amis-admin.handle-upload-file'));
+        $this->receiver(route('admin.handle-upload-file'));
     }
 
     /**
@@ -55,7 +57,7 @@ class InputFile extends FormBase
      */
     public function uniqueName(): self
     {
-        $this->receiver(route('amis-admin.handle-upload-image', ['unique_name' => true]));
+        $this->receiver(route('admin.handle-upload-image', ['unique_name' => true]));
         return $this;
     }
 }

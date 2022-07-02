@@ -15,6 +15,7 @@ use Larva\Admin\Http\Controllers\MenuController;
 use Larva\Admin\Http\Controllers\PermissionController;
 use Larva\Admin\Http\Controllers\RoleController;
 use Larva\Admin\Http\Controllers\SettingsController;
+use Larva\Admin\Http\Controllers\SystemSettingsController;
 
 Route::group([
     'domain' => config('admin.route.domain'),
@@ -41,6 +42,7 @@ Route::group([
     $router->resource('roles', RoleController::class)->names('admin.role');
     $router->resource('permissions', PermissionController::class)->names('admin.permission');
     $router->get('permissions_auto_generate', [PermissionController::class, 'autoGenerate'])->name('admin.permission.auto-generate');
-
     $router->resource('settings', SettingsController::class)->names('admin.settings');
+    $router->get('system_setting', [SystemSettingsController::class, 'index'])->name('admin.system_setting');
+    $router->post('system_setting', [SystemSettingsController::class, 'save'])->name('admin.system_setting.save');
 });

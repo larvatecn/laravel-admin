@@ -14,13 +14,18 @@ use Larva\Admin\Models\Administrator;
 use Larva\Admin\Models\Menu;
 use Larva\Admin\Models\Permission;
 use Larva\Admin\Models\Role;
-use Larva\Settings\Facade\Settings;
+use Larva\Settings\SettingEloquent;
 
 class AdminTablesSeeder extends Seeder
 {
     public function run()
     {
-        //Settings::set('sys.web_url', 'https://www.baidu.com', 'string');
+        //初始化配置
+        collect([
+            ['name' => '上传自动重命名', 'key' => 'uploader.unique_name', 'value' => '1', 'cast_type' => 'bool'],//启用唯一命名
+            ['name' => '图片上传后缀', 'key' => 'uploader.image_mimes', 'value' => 'jpeg,bmp,png,gif,jpg', 'cast_type' => 'string'],//允许上传的图片文件后缀
+            ['name' => '文件上传后缀', 'key' => 'uploader.file_mimes', 'value' => 'docx', 'cast_type' => 'string'],//允许上传的文件后缀
+        ])->each(fn($item) => SettingEloquent::create($item));
 
         Administrator::truncate();
         Administrator::create([
@@ -80,13 +85,13 @@ class AdminTablesSeeder extends Seeder
                 'parent_id' => 2,
             ],
             [
-                'name' => '配置中心管理',
+                'name' => '配置管理',
                 'slug' => 'settings',
                 'http_path' => ['/settings*'],
                 'order' => 7,
                 'parent_id' => 2,
             ],
-        ])->each(fn ($item) => Permission::create($item));
+        ])->each(fn($item) => Permission::create($item));
 
         Role::first()->permissions()->save(Permission::first());
         Menu::truncate();
@@ -152,6 +157,15 @@ class AdminTablesSeeder extends Seeder
                 'icon' => '',
                 'uri' => 'settings',
                 'key' => 'settings',
+                'uri_type' => 'route',
+            ],
+            [
+                'parent_id' => 2,
+                'order' => 8,
+                'title' => '系统配置',
+                'icon' => '',
+                'uri' => 'system_setting',
+                'key' => 'system_setting',
                 'uri_type' => 'route',
             ]
         ]);

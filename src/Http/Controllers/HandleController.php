@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Storage;
 use Larva\Admin\Facades\Admin;
+use Larva\Settings\Facade\Settings;
 
 class HandleController extends AdminController
 {
@@ -40,10 +41,13 @@ class HandleController extends AdminController
         return Admin::response($menus);
     }
 
-    public function action()
+    /**
+     * @return JsonResponse|mixed
+     */
+    public function action(Request $request)
     {
         try {
-            $data = request()?->all();
+            $data = $request->all();
             $validator = Admin::validatorData($data, [
                 'action' => 'required|string',
                 'class' => 'required|string',
@@ -56,7 +60,7 @@ class HandleController extends AdminController
             $action = $data['action'];
             $params = $data['params'];
             $res = (new $class())->$action($params);
-            return $res ?? Admin::responseMessage('操作成功');
+            return $res ?? Admin::responseMessage('操作成功！');
         } catch (Exception $e) {
             return Admin::responseError($e->getMessage());
         }
@@ -72,7 +76,7 @@ class HandleController extends AdminController
     {
         try {
             Admin::validatorData($request->all(), [
-                'file' => 'mimes:' . config('admin.upload.mimes', 'jpeg,bmp,png,gif,jpg')
+                'file' => 'mimes:' . Settings::get('uploader.image_mimes', 'jpeg,bmp,png,gif,jpg')
             ]);
             return $this->upload($request);
         } catch (Exception $exception) {
@@ -90,8 +94,9 @@ class HandleController extends AdminController
     {
         try {
             Admin::validatorData($request->all(), [
-                'file' => 'mimes:' . config('amis-admin.upload.file_mimes', '')
+                'file' => 'mimes:' . Settings::get('uploader.file_mimes', '')
             ]);
+            $request->merge(['page' => 'files']);
             return $this->upload($request);
         } catch (Exception $exception) {
             return Admin::responseError($exception->getMessage());
@@ -108,17 +113,15 @@ class HandleController extends AdminController
     {
         try {
             $file = $request->file('file');
-            $type = $request->file('type');
             $path = $request->input('path', 'images');
-            $uniqueName = $request->boolean('unique_name', config('admin.upload.uniqueName', false));
-            $disk = config('admin.upload.disk');
+            $uniqueName = $request->boolean('unique_name', Settings::get('uploader.unique_name', true));
             $name = $file->getClientOriginalName();
             if ($uniqueName) {
-                $path = $file->store($path, $disk);
+                $path = $file->store($path);
             } else {
-                $path = $file->storeAs($path, $name, $disk);
+                $path = $file->storeAs($path, $name);
             }
-            $url = Storage::disk($disk)->url($path);
+            $url = Storage::disk()->url($path);
             $data = [
                 'value' => $path,
                 'filename' => $name,

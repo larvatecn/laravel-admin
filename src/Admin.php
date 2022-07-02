@@ -98,7 +98,14 @@ class Admin
         return $this->response([], $message, $code);
     }
 
-    public function validatorData(array $all, $rules, $message = []): \Illuminate\Validation\Validator
+    /**
+     * 验证数据
+     * @param array $all
+     * @param array $rules
+     * @param array $message
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    public function validatorData(array $all, array $rules, array $message = []): \Illuminate\Contracts\Validation\Validator
     {
         $validator = Validator::make($all, $rules, $message);
         if ($validator->fails()) {

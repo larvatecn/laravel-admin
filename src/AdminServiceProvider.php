@@ -92,14 +92,10 @@ class AdminServiceProvider extends ServiceProvider
     protected function bootForConsole(): void
     {
         // Publishing the configuration file.
-        $this->publishes([
-            __DIR__ . '/../config/admin.php' => config_path('admin.php'),
-        ], 'admin-config');
-
+        $this->publishes([__DIR__ . '/../config/admin.php' => config_path('admin.php'),], 'admin-config');
+        $this->publishes([__DIR__ . '/../database/migrations' => database_path('migrations')], 'admin-migrations');
         // Publishing assets.
-        $this->publishes([
-            __DIR__ . '/../resources/dist' => public_path('vendor/admin'),
-        ], 'admin-assets');
+        $this->publishes([__DIR__ . '/../resources/dist' => public_path('vendor/admin'),], 'admin-assets');
 
         // Registering package commands.
         $this->commands($this->commands);

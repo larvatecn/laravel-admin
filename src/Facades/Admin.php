@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Facade;
 /**
  * Class Admin
  * @mixin \Larva\Admin\Admin
+ * @see \Larva\Admin\Admin
  * @author Tongle Xu <xutongle@msn.com>
  */
 class Admin extends Facade
