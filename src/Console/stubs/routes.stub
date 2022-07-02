@@ -1,10 +1,9 @@
 <?php
 
 use App\Admin\Controllers\HomeController;
-use App\Admin\Controllers\SettingsController;
+use App\Admin\Controllers\SystemSettingsController;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
-use Larva\Admin\Http\Controllers\SystemSettingsController;
 
 Route::group([
     'domain' => config('admin.route.domain'),
