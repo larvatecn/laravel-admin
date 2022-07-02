@@ -7,14 +7,21 @@
 
 declare(strict_types=1);
 
-namespace Larva\Admin\Models;
+namespace Larva\Admin;
 
 use Illuminate\Database\Seeder;
+use Larva\Admin\Models\Administrator;
+use Larva\Admin\Models\Menu;
+use Larva\Admin\Models\Permission;
+use Larva\Admin\Models\Role;
+use Larva\Settings\Facade\Settings;
 
 class AdminTablesSeeder extends Seeder
 {
     public function run()
     {
+        //Settings::set('sys.web_url', 'https://www.baidu.com', 'string');
+
         Administrator::truncate();
         Administrator::create([
             'username' => 'admin',
@@ -148,5 +155,6 @@ class AdminTablesSeeder extends Seeder
                 'uri_type' => 'route',
             ]
         ]);
+
     }
 }

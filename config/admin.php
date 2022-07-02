@@ -11,9 +11,9 @@ use Larva\Admin\Models\Permission;
 use Larva\Admin\Models\Role;
 
 return [
+    //默认配置
     'name' => 'Admin',
     'title' => 'Admin',
-    //登录界面
     'loginLogo' => '',
     'loginDesc' => '站在巨人的肩上 - 超强的自定义后台管理系统',
     //默认头像
@@ -26,10 +26,10 @@ return [
             'href' => 'https://www.larva.com.cn',
             'title' => '官网'
         ],
-
     ],
     'bootstrap' => app_path('Admin/bootstrap.php'),
 
+    //路由配置
     'route' => [
         'domain' => null,
         'prefix' => env('ADMIN_ROUTE_PREFIX', 'admin'),
@@ -37,9 +37,9 @@ return [
         'middleware' => ['web', 'admin'],
     ],
     'directory' => app_path('Admin'),
-
     'https' => env('ADMIN_HTTPS', false),
 
+    //认证配置
     'auth' => [
         'controller' => App\Admin\Controllers\AuthController::class,
         'guard' => 'admin',
@@ -66,6 +66,8 @@ return [
             'view/login',
         ],
     ],
+
+    //权限配置
     'permission' => [
         'enable' => true,
         'excepts' => [
@@ -81,6 +83,9 @@ return [
         ],
     ],
 
+    /**
+     * 模型配置
+     */
     'database' => [
         'users_model' => Administrator::class,
         'roles_model' => Role::class,
