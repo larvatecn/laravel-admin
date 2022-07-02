@@ -32,37 +32,77 @@ trait FormHooks
         }
     }
 
-
+    /**
+     * 修改前回调
+     *
+     * @param Closure $callback
+     * @return Form
+     */
     public function editing(Closure $callback): Form
     {
         return $this->registerHook('editing', $callback);
     }
 
+    /**
+     *
+     * @param Closure $callback
+     * @return Form
+     */
     public function editData(Closure $callback): Form
     {
         return $this->registerHook('editData', $callback);
     }
 
+    /**
+     * 提交后回调
+     *
+     * @param Closure $callback
+     * @return Form
+     */
     public function submitted(Closure $callback): Form
     {
         return $this->registerHook('submitted', $callback);
     }
 
+    /**
+     * 保存前回调
+     *
+     * @param Closure $callback
+     * @return Form
+     */
     public function saving(Closure $callback): Form
     {
         return $this->registerHook('saving', $callback);
     }
 
+    /**
+     * 保存后回调
+     *
+     * @param Closure $callback
+     * @return Form
+     */
     public function saved(Closure $callback): Form
     {
         return $this->registerHook('saved', $callback);
     }
 
+    /**
+     * 删除前回调
+     *
+     * @param Closure $callback
+     * @return Form
+     */
     public function deleting(Closure $callback): Form
     {
         return $this->registerHook('deleting', $callback);
     }
 
+    /**
+     * 删除后回调
+     *
+     * @param Closure $callback
+     * @return Form
+     */
     public function deleted(Closure $callback): Form
     {
         return $this->registerHook('deleted', $callback);

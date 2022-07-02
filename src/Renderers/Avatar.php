@@ -39,6 +39,6 @@ class Avatar extends BaseSchema
 
     public function getValue($value)
     {
-        return $value;//admin_file_url($value);
+        return admin_file_url($value);
     }
 }

@@ -23,15 +23,15 @@ class AdminTablesSeeder extends Seeder
         //初始化配置
         collect([
             //默认配置
-            ['name' => 'Web Url', 'key' => 'system.web_url', 'value' => 'https://www.larva.com.cn', 'cast_type' => 'string'],//启用唯一命名
-            ['name' => '移动 Url', 'key' => 'system.wap_url', 'value' => 'https://www.larva.com.cn', 'cast_type' => 'string'],//启用唯一命名
-            ['name' => '网站标题', 'key' => 'system.title', 'value' => 'Larva CMS', 'cast_type' => 'string'],//启用唯一命名
-            ['name' => '网站关键词', 'key' => 'system.keywords', 'value' => '网站关键词', 'cast_type' => 'string'],//启用唯一命名
-            ['name' => '网站描述', 'key' => 'system.description', 'value' => '网站描述', 'cast_type' => 'string'],//启用唯一命名
-            ['name' => 'ICP备案', 'key' => 'system.icp_record', 'value' => '鲁ICP备19007076号-8', 'cast_type' => 'string'],//启用唯一命名
-            ['name' => '公安备案', 'key' => 'system.police_record', 'value' => '', 'cast_type' => 'string'],//启用唯一命名
-            ['name' => '服务邮箱', 'key' => 'system.support_email', 'value' => 'support@larva.com.cn', 'cast_type' => 'string'],//启用唯一命名
-            ['name' => '法律邮箱', 'key' => 'system.lawyer_email', 'value' => 'lawyer@larva.com.cn', 'cast_type' => 'string'],//启用唯一命名
+            ['name' => 'Web Url', 'key' => 'system.web_url', 'value' => 'https://www.larva.com.cn', 'cast_type' => 'string'],
+            ['name' => '移动 Url', 'key' => 'system.wap_url', 'value' => 'https://www.larva.com.cn', 'cast_type' => 'string'],
+            ['name' => '网站标题', 'key' => 'system.title', 'value' => 'Larva CMS', 'cast_type' => 'string'],
+            ['name' => '网站关键词', 'key' => 'system.keywords', 'value' => '网站关键词', 'cast_type' => 'string'],
+            ['name' => '网站描述', 'key' => 'system.description', 'value' => '网站描述', 'cast_type' => 'string'],
+            ['name' => 'ICP备案', 'key' => 'system.icp_record', 'value' => '鲁ICP备19007076号-8', 'cast_type' => 'string'],
+            ['name' => '公安备案', 'key' => 'system.police_record', 'value' => '', 'cast_type' => 'string'],
+            ['name' => '服务邮箱', 'key' => 'system.support_email', 'value' => 'support@larva.com.cn', 'cast_type' => 'string'],
+            ['name' => '法律邮箱', 'key' => 'system.lawyer_email', 'value' => 'lawyer@larva.com.cn', 'cast_type' => 'string'],
 
             //上传配置
             ['name' => '上传自动重命名', 'key' => 'uploader.unique_name', 'value' => '1', 'cast_type' => 'bool'],//启用唯一命名
@@ -101,6 +101,13 @@ class AdminTablesSeeder extends Seeder
                 'slug' => 'settings',
                 'http_path' => ['/settings*'],
                 'order' => 7,
+                'parent_id' => 2,
+            ],
+            [
+                'name' => '系统配置',
+                'slug' => 'system_setting',
+                'http_path' => ['/system_setting*'],
+                'order' => 8,
                 'parent_id' => 2,
             ],
         ])->each(fn($item) => Permission::create($item));

@@ -30,14 +30,19 @@ use Larva\Admin\Renderers\Tpl;
 
 class PermissionController extends AdminController
 {
+    /**
+     * 路由名称
+     *
+     * @var string
+     */
     private string $routeName = 'admin.permission';
 
     protected function grid()
     {
         $model = config('admin.database.permissions_model');
         return Grid::make($model::query(), $this->routeName, function (Grid $grid) {
-            $grid
-                ->loadDataOnce()
+            $grid->usePage()->title('权限管理');
+            $grid->loadDataOnce()
                 ->toTree()
                 ->disableBulkDelete();
 

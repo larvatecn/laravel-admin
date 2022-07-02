@@ -15,6 +15,13 @@ use Larva\Admin\Traits\HasDateTimeFormatter;
 
 /**
  * 权限模型
+ * @property int $id
+ * @property int $parent_id
+ * @property string $name
+ * @property string $slug
+ * @property array $http_method
+ * @property array $http_path
+ * @property int $order
  *
  * @author Tongle Xu <xutongle@msn.com>
  */
@@ -28,6 +35,10 @@ class Permission extends Model
      * @var string
      */
     protected $table = 'admin_permissions';
+
+    protected $fillable = [
+        'name', 'slug'
+    ];
 
     /**
      * The attributes that should be cast.

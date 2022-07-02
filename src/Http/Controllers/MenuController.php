@@ -9,7 +9,6 @@ declare(strict_types=1);
 
 namespace Larva\Admin\Http\Controllers;
 
-use Illuminate\Database\Eloquent\Model;
 use Larva\Admin\Components\Form;
 use Larva\Admin\Components\Grid;
 use Larva\Admin\Models\Menu;
@@ -37,6 +36,7 @@ class MenuController extends AdminController
         /*@var Model $model */
         $model = config('admin.database.menu_model');
         return Grid::make($model::query(), 'admin.menu', function (Grid $grid) {
+            $grid->usePage()->title('菜单管理');
             $grid->builder()->orderBy('order');
             $grid->useCRUD()->columnsTogglable(false)->expandConfig([
                 'expand' => 'all',

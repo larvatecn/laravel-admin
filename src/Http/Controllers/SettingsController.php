@@ -25,6 +25,7 @@ class SettingsController extends AdminController
     protected function grid(): Grid
     {
         return Grid::make(SettingEloquent::query(), 'admin.settings', function (Grid $grid) {
+            $grid->usePage()->title('配置管理');
             $grid->useCRUD()->columnsTogglable(false);
             $grid->builder()->orderBy('id', 'desc');
             $grid->disableBulkDelete()->dialogForm();

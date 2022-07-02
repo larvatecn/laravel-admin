@@ -430,7 +430,7 @@ trait FormResource
 
     /**
      * 删除编辑初始化字段
-     * @param $name
+     * @param string $name
      * @return void
      */
     public function deleteEditData($name): void

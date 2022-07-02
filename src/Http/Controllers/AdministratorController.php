@@ -9,7 +9,6 @@ declare(strict_types=1);
 
 namespace Larva\Admin\Http\Controllers;
 
-use Illuminate\Database\Eloquent\Model;
 use Larva\Admin\Components\Form;
 use Larva\Admin\Components\Grid;
 use Larva\Admin\Facades\Admin;
@@ -26,10 +25,16 @@ use Larva\Admin\Renderers\Tpl;
 
 class AdministratorController extends AdminController
 {
+    /**
+     * 管理员列表
+     *
+     * @return Grid
+     */
     protected function grid(): Grid
     {
         $model = config('admin.database.users_model');
         return Grid::make($model::query(), 'admin.user', function (Grid $grid) {
+            $grid->usePage()->title('管理员列表');
             $grid->useCRUD()->columnsTogglable(false);
             $grid->disableBulkDelete()->dialogForm();
             $grid->column('id', 'ID')->width(40);
@@ -101,12 +106,22 @@ class AdministratorController extends AdminController
             $form->editData(function (Form $form) {
                 $form->deleteEditData('password');
             });
+
             $form->saving(function (Form $form) {
-                $form->deleteInput('password_confirmation');
                 if ($form->password && $form->model()->get('password') != $form->password) {
                     $form->password = bcrypt($form->password);
                 }
+                if (!$form->password) {
+                    $form->deleteInput('password');
+                }
             });
+
+//            $form->saving(function (Form $form) {
+//                $form->deleteInput('password_confirmation');
+//                if ($form->password && $form->model()->get('password') != $form->password) {
+//                    $form->password = bcrypt($form->password);
+//                }
+//            });
         });
     }
 }

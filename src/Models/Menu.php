@@ -15,6 +15,9 @@ use Larva\Admin\Traits\HasDateTimeFormatter;
 
 /**
  * 菜单模型
+ * @property int $id
+ * @property int $parent_id
+ * @property int $order
  *
  * @author Tongle Xu <xutongle@msn.com>
  */
