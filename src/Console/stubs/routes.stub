@@ -4,6 +4,7 @@ use App\Admin\Controllers\HomeController;
 use App\Admin\Controllers\SettingsController;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
+use Larva\Admin\Http\Controllers\SystemSettingsController;
 
 Route::group([
     'domain' => config('admin.route.domain'),
@@ -11,4 +12,6 @@ Route::group([
     'middleware' => config('admin.route.middleware'),
 ], static function (Router $router) {
     $router->get('home', [HomeController::class, 'index'])->name('admin.home');
+    $router->get('system_setting', [SystemSettingsController::class, 'index'])->name('admin.system_setting');
+    $router->post('system_setting', [SystemSettingsController::class, 'save'])->name('admin.system_setting.save');
 });

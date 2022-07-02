@@ -22,9 +22,21 @@ class AdminTablesSeeder extends Seeder
     {
         //初始化配置
         collect([
+            //默认配置
+            ['name' => 'Web Url', 'key' => 'system.web_url', 'value' => 'https://www.larva.com.cn', 'cast_type' => 'string'],//启用唯一命名
+            ['name' => '移动 Url', 'key' => 'system.wap_url', 'value' => 'https://www.larva.com.cn', 'cast_type' => 'string'],//启用唯一命名
+            ['name' => '网站标题', 'key' => 'system.title', 'value' => 'Larva CMS', 'cast_type' => 'string'],//启用唯一命名
+            ['name' => '网站关键词', 'key' => 'system.keywords', 'value' => '网站关键词', 'cast_type' => 'string'],//启用唯一命名
+            ['name' => '网站描述', 'key' => 'system.description', 'value' => '网站描述', 'cast_type' => 'string'],//启用唯一命名
+            ['name' => 'ICP备案', 'key' => 'system.icp_record', 'value' => '鲁ICP备19007076号-8', 'cast_type' => 'string'],//启用唯一命名
+            ['name' => '公安备案', 'key' => 'system.police_record', 'value' => '', 'cast_type' => 'string'],//启用唯一命名
+            ['name' => '服务邮箱', 'key' => 'system.support_email', 'value' => 'support@larva.com.cn', 'cast_type' => 'string'],//启用唯一命名
+            ['name' => '法律邮箱', 'key' => 'system.lawyer_email', 'value' => 'lawyer@larva.com.cn', 'cast_type' => 'string'],//启用唯一命名
+
+            //上传配置
             ['name' => '上传自动重命名', 'key' => 'uploader.unique_name', 'value' => '1', 'cast_type' => 'bool'],//启用唯一命名
             ['name' => '图片上传后缀', 'key' => 'uploader.image_mimes', 'value' => 'jpeg,bmp,png,gif,jpg', 'cast_type' => 'string'],//允许上传的图片文件后缀
-            ['name' => '文件上传后缀', 'key' => 'uploader.file_mimes', 'value' => 'docx', 'cast_type' => 'string'],//允许上传的文件后缀
+            ['name' => '文件上传后缀', 'key' => 'uploader.file_mimes', 'value' => 'gz,zip,rar,doc,txt,md,pdf,ppt,pptx,doc,docx,xls,xlsx,csv', 'cast_type' => 'string'],//允许上传的文件后缀
         ])->each(fn($item) => SettingEloquent::create($item));
 
         Administrator::truncate();

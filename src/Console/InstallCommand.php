@@ -145,6 +145,20 @@ class InstallCommand extends Command
         $this->line('<info>AuthController file was created:</info> ' . str_replace(base_path(), '', $authController));
     }
 
+    public function createSettingsController(): void
+    {
+        $authController = $this->directory . '/Controllers/SystemSettingsController.php';
+        $contents = $this->getStub('SystemSettingsController');
+        $this->laravel['files']->put(
+            $authController,
+            str_replace(
+                'DummyNamespace',
+                $this->namespace('Controllers'),
+                $contents)
+        );
+        $this->line('<info>SystemSettingsController file was created:</info> ' . str_replace(base_path(), '', $authController));
+    }
+
     /**
      * @param string|null $name
      * @return string

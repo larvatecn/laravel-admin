@@ -7,6 +7,7 @@
 
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
+use Larva\Admin\Http\Controllers\SystemSettingsController;
 use Larva\Admin\Http\Controllers\AdministratorController;
 use Larva\Admin\Http\Controllers\AuthController;
 use Larva\Admin\Http\Controllers\HandleController;
@@ -15,7 +16,6 @@ use Larva\Admin\Http\Controllers\MenuController;
 use Larva\Admin\Http\Controllers\PermissionController;
 use Larva\Admin\Http\Controllers\RoleController;
 use Larva\Admin\Http\Controllers\SettingsController;
-use Larva\Admin\Http\Controllers\SystemSettingsController;
 
 Route::group([
     'domain' => config('admin.route.domain'),

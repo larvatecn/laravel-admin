@@ -45,13 +45,16 @@ class FormBase extends BaseSchema
 {
     public string $type = 'input-text';
 
-
+    /**
+     * 删除文件
+     * @param $file
+     * @return bool
+     */
     protected function deleteFile($file): bool
     {
         if (is_string($file)) {
-            $storage = Storage::disk(config('amis-admin.upload.disk'));
-            if ($storage->exists($file)) {
-                return $storage->delete($file);
+            if (Storage::disk()->exists($file)) {
+                return Storage::disk()->delete($file);
             }
         }
         return false;

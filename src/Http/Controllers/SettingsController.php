@@ -43,7 +43,7 @@ class SettingsController extends AdminController
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->wrapWithPanel(false)->className('mb-3 bg-search p-2 pt-3');
                 $filter->like('name', '名称')->useFormItem()->size('sm');
-                $filter->like('key', '标识')->useFormItem()->size('sm');
+                $filter->like('key', 'Key')->useFormItem()->size('sm');
             });
         });
     }
