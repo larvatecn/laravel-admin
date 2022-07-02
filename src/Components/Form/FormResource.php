@@ -185,7 +185,6 @@ trait FormResource
     protected function prepareUpdate(array $updates, bool $oneToOneRelation = false): array
     {
         $prepared = [];
-
         $formColumns = collect($this->getItems())->map(fn ($item) => $item->getName())->toArray();
         $dbColumns = Schema::getColumnListing($this->model()->getTable());
         $columns = array_merge($formColumns, $dbColumns);
@@ -320,7 +319,6 @@ trait FormResource
                     break;
                 case $relation instanceof Relations\HasMany:
                 case $relation instanceof Relations\MorphMany:
-
                     foreach ($prepared[$name] as $related) {
                         /** @var Relations\Relation $relation */
                         $relation = $this->model()->$name();
@@ -347,7 +345,6 @@ trait FormResource
             }
         }
     }
-
 
     /**
      * 新增数据
@@ -408,9 +405,7 @@ trait FormResource
             }
         });
         $this->editData = $this->builder->findOrFail($this->editKey);
-
         $this->prepareEditData($this->editData);
-
         $this->callEdiData($this->editData);
     }
 
@@ -465,7 +460,6 @@ trait FormResource
         try {
             $data = $data ?? request()->all();
             $this->model = $this->builder->findOrFail($id);
-
             $this->_update($data);
             return Admin::responseMessage('更新成功');
         } catch (Exception $exception) {
@@ -528,8 +522,7 @@ trait FormResource
 
         //验证数据
         $this->validatorData($data);
-        print_r($this->model);
-        exit;
+
         //预处理数据
         $this->prepare($data);
 

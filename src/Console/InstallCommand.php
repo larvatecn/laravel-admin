@@ -12,6 +12,11 @@ namespace Larva\Admin\Console;
 use Illuminate\Console\Command;
 use Larva\Admin\Models\AdminTablesSeeder;
 
+/**
+ * 按照脚本
+ *
+ * @author Tongle Xu <xutongle@msn.com>
+ */
 class InstallCommand extends Command
 {
     protected $signature = 'admin:install';

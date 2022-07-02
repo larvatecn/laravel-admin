@@ -16,7 +16,6 @@ trait FormMain
     private AmisForm $form;
     private array $items = [];
 
-
     protected BaseSchema|array|null $customLayout = null;
 
     /**
@@ -68,7 +67,6 @@ trait FormMain
         return $this->renderForm();
     }
 
-
     /**
      * 获取表单提交地址
      * @return string
@@ -98,7 +96,6 @@ trait FormMain
                 $items[] = $item->render();
             }
         }
-
 
         //提交地址
         $this->form->api($this->getAction());

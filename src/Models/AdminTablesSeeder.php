@@ -105,7 +105,7 @@ class AdminTablesSeeder extends Seeder
             [
                 'parent_id' => 2,
                 'order' => 3,
-                'title' => '管理员',
+                'title' => '管理员管理',
                 'icon' => '',
                 'uri' => 'admin_users',
                 'key' => 'admin_users',
@@ -114,7 +114,7 @@ class AdminTablesSeeder extends Seeder
             [
                 'parent_id' => 2,
                 'order' => 4,
-                'title' => '角色',
+                'title' => '角色管理',
                 'icon' => '',
                 'uri' => 'roles',
                 'key' => 'roles',
@@ -123,7 +123,7 @@ class AdminTablesSeeder extends Seeder
             [
                 'parent_id' => 2,
                 'order' => 5,
-                'title' => '权限',
+                'title' => '权限管理',
                 'icon' => '',
                 'uri' => 'permissions',
                 'key' => 'permissions',
@@ -132,7 +132,7 @@ class AdminTablesSeeder extends Seeder
             [
                 'parent_id' => 2,
                 'order' => 6,
-                'title' => '菜单',
+                'title' => '菜单管理',
                 'icon' => '',
                 'uri' => 'menus',
                 'key' => 'menus',
@@ -141,7 +141,7 @@ class AdminTablesSeeder extends Seeder
             [
                 'parent_id' => 2,
                 'order' => 7,
-                'title' => '配置中心',
+                'title' => '配置管理',
                 'icon' => '',
                 'uri' => 'settings',
                 'key' => 'settings',
